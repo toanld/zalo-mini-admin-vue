@@ -20,7 +20,7 @@ npm run dev
 
 4. Open localhost:3000 on your browser and start coding 🔥
 
-![Happy Coding](/screenshots/dev.png)
+![Happy Coding](/screenshots/dev1.png)
 
 ![Happy Coding](/screenshots/dev2.png)
 
