@@ -9,34 +9,8 @@ const notifying = ref(true)
 onClickOutside(target, () => {
   dropdownOpen.value = false
 })
-
-const notificationItems = ref([
-  {
-    route: '#',
-    title: 'Edit your information in a swipe',
-    details:
-      'Sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim.',
-    time: '12 May, 2025'
-  },
-  {
-    route: '#',
-    title: 'It is a long established fact',
-    details: 'that a reader will be distracted by the readable.',
-    time: '24 Feb, 2025'
-  },
-  {
-    route: '#',
-    title: 'There are many variations',
-    details: 'of passages of Lorem Ipsum available, but the majority have suffered',
-    time: '04 Jan, 2025'
-  },
-  {
-    route: '#',
-    title: 'There are many variations',
-    details: 'of passages of Lorem Ipsum available, but the majority have suffered',
-    time: '01 Dec, 2024'
-  }
-])
+import { useConfigStore } from '@/stores/useConfigStore';
+const configStore = useConfigStore();
 </script>
 
 <template>
@@ -79,20 +53,14 @@ const notificationItems = ref([
         <h5 class="text-sm font-medium text-bodydark2">Notification</h5>
       </div>
 
-      <ul class="flex h-auto flex-col overflow-y-auto">
-        <template v-for="(item, index) in notificationItems" :key="index">
+      <ul class="flex h-auto flex-col overflow-y-auto notification">
+        <template v-for="(item, index) in configStore.headerbar.notifications" :key="index">
           <li>
             <router-link
               class="flex flex-col gap-2.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-              :to="item.route"
-            >
-              <p class="text-sm">
-                <span class="text-black dark:text-white">{{ item.title }}</span>
-                {{ item.details }}
-              </p>
-
-              <p class="text-xs">{{ item.time }}</p>
-            </router-link>
+              :to="item.link"
+              v-html="item.message"
+            ></router-link>
           </li>
         </template>
       </ul>
@@ -100,3 +68,37 @@ const notificationItems = ref([
     <!-- Dropdown End -->
   </li>
 </template>
+<style scoped>
+.notification .h-12.5 {
+    height: 3.125rem; /* equivalent to Tailwind's h-12.5 */
+}
+
+.notification .w-12.5 {
+    width: 3.125rem; /* equivalent to Tailwind's w-12.5 */
+}
+
+.notification .rounded-full {
+    border-radius: 9999px; /* equivalent to Tailwind's rounded-full */
+}
+
+.notification .text-sm {
+    font-size: 0.875rem; /* equivalent to Tailwind's text-sm */
+}
+
+.notification .font-medium {
+    font-weight: 500; /* equivalent to Tailwind's font-medium */
+}
+
+.notification .text-black {
+    color: #000; /* equivalent to Tailwind's text-black */
+}
+
+.notification .dark\:text-white {
+    color: #fff; /* equivalent to Tailwind's dark:text-white */
+}
+
+.notification .text-xs {
+    font-size: 0.75rem; /* equivalent to Tailwind's text-xs */
+}
+
+</style>

@@ -9,7 +9,6 @@ onClickOutside(target, () => {
 })
 import { useConfigStore } from '@/stores/useConfigStore';
 const configStore = useConfigStore();
-const headerbar = configStore.headerbar || {};
 </script>
 
 <template>
