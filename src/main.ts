@@ -7,7 +7,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 import { myTrans } from './libs/functions'; // Import hàm myTrans toàn cục
-
+import API from './libs/API'; // Import API toàn cục
 import VueApexCharts from 'vue3-apexcharts'
 const app = createApp(App)
 // Thiết lập hàm myTrans là một global property
