@@ -1,0 +1,46 @@
+{
+  "name": "admin-app",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Admin-App",
+  "repository": "",
+  "license": "UNLICENSED",
+  "browserslist": [
+    "Android >= 5",
+    "IOS >= 9.3",
+    "Edge >= 15",
+    "Safari >= 9.1",
+    "Chrome >= 49",
+    "Firefox >= 31",
+    "Samsung >= 5"
+  ],
+  "scripts": {
+    "start": "zmp start",
+    "deploy": "zmp deploy",
+    "build:css": "postcss src/css/tailwind.css -o src/css/styles.css",
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build && zmp deploy",
+    "serve": "vite preview"
+  },
+  "dependencies": {
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vueuse/core": "^11.1.0",
+    "flatpickr": "^4.6.13",
+    "jsvectormap": "^1.6.0",
+    "pinia": "^2.2.4",
+    "sass": "^1.80.3",
+    "vue": "^3.2.6",
+    "vue-router": "^4.0.11",
+    "vue3-apexcharts": "^1.7.0",
+    "zmp-sdk": "^2.41.0"
+  },
+  "devDependencies": {
+    "@vue/compiler-sfc": "^3.2.6",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "^4.3.2",
+    "vite": "^5.4.9",
+    "vue-tsc": "^0.2.2"
+  }
+}
