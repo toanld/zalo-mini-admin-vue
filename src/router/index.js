@@ -1,9 +1,8 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Index from './../pages/index.vue'
-import List from './../pages/list.vue'
 import SignupView from '@/views/Authentication/SignupView.vue'
 import SigninView from '@/views/Authentication/SigninView.vue'
 import ECommerceView from '@/views/Dashboard/ECommerceView.vue'
+import { getToken } from '@/libs/functions' // Import the getToken function
 
 const routes = [
     {
@@ -11,10 +10,10 @@ const routes = [
         name: 'eCommerce',
         component: ECommerceView,
         meta: {
-            title: 'eCommerce Dashboard'
+            title: 'eCommerce Dashboard',
+            requiresAuth: true, // Add meta field to check for authentication
         }
     },
-    { path: '/list', component: List },
     {
         path: '/auth/signup',
         name: 'signup',
@@ -36,6 +35,25 @@ const routes = [
 const router = createRouter({
     history: createWebHashHistory(),
     routes,
+})
+
+// Navigation guard to check authentication
+// Navigation guard to check authentication
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        // Check if the user is logged in by verifying the token
+        const token = getToken();
+        if (!token) {
+            // If no token, redirect to signin and pass the intended route in the 'redirect' query
+            next({ name: 'signin', query: { redirect: to.fullPath } });
+        } else {
+            // If token exists, proceed to the route
+            next();
+        }
+    } else {
+        // If the route doesn't require authentication, proceed
+        next();
+    }
 })
 
 export default router

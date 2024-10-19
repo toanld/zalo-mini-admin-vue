@@ -30,7 +30,9 @@ export default {
                     // Lưu token vào localStorage
                     saveToken(response.data.token);
                     // Chuyển hướng đến trang chính sau khi đăng nhập thành công
-                    this.$router.push('/');
+                    // Redirect to the original route or fallback to home if not provided
+                    const redirectPath = this.$route.query.redirect || '/';
+                    this.$router.push(redirectPath);
                 })
                 .catch(error => {
                     if (error.response && error.response.data.errors) {

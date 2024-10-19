@@ -8,8 +8,11 @@ import App from './App.vue'
 import router from './router'
 import { myTrans } from './libs/functions'; // Import hàm myTrans toàn cục
 import API from './libs/API'; // Import API toàn cục
+import DefaultLayout from '@/layouts/DefaultLayout.vue' // Import DefaultLayout globally
 import VueApexCharts from 'vue3-apexcharts'
 const app = createApp(App)
+// Register DefaultLayout as a global component
+app.component('DefaultLayout', DefaultLayout)
 // Thiết lập hàm myTrans là một global property
 app.config.globalProperties.$myTrans = myTrans;
 
