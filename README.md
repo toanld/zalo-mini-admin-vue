@@ -22,6 +22,8 @@ npm run dev
 
 ![Happy Coding](/screenshots/dev.png)
 
+![Happy Coding](/screenshots/dev2.png)
+
 ### Production
 
 1. Build your vue project using vite
