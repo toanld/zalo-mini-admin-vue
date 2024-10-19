@@ -50,3 +50,7 @@ Copyright (c) Zalo Group. and its affiliates. All rights reserved.
 
 The examples provided by Zalo Group are for non-commercial testing and evaluation
 purposes only. Zalo Group reserves all rights not expressly granted.
+* https://developers.zalo.me/tools/explorer
+* https://github.com/Zalo-MiniApp/coffee-shop-tutorial
+* chatgpt: https://chatgpt.com/c/6710d649-6358-8011-b679-dfe2eadc1343
+* https://free-vue-demo.tailadmin.com/

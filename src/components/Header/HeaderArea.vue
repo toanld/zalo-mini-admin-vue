@@ -8,19 +8,9 @@ import { defineProps } from 'vue'
 
 const { toggleSidebar } = useSidebarStore()
 const sidebarStore = useSidebarStore()
-
-// Define props to accept config data
-const props = defineProps({
-    config: {
-        type: Object,
-        default: () => ({
-            user: { name: 'User', avatar: '' },
-            searchPlaceholder: 'Type to search..sss.',
-            notifications: [],
-            messages: []
-        })
-    }
-});
+import { useConfigStore } from '@/stores/useConfigStore';
+const configStore = useConfigStore();
+const headerbar = configStore.headerbar || {};
 </script>
 
 <template>
@@ -93,13 +83,12 @@ const props = defineProps({
 
                         <input
                             type="text"
-                            :placeholder="config.searchPlaceholder"
+                            placeholder="Nhập từ khóa"
                         class="w-full xl:w-125 bg-transparent pr-4 pl-9 focus:outline-none"
                         />
                     </div>
                 </form>
             </div>
-
             <div class="flex items-center gap-3 2xsm:gap-7">
                 <ul class="flex items-center gap-2 2xsm:gap-4">
                     <li>
@@ -109,16 +98,17 @@ const props = defineProps({
                     </li>
 
                     <!-- Notification Menu Area -->
-                    <DropdownNotification :notifications="config.notifications" />
+                    <DropdownNotification />
                     <!-- Notification Menu Area -->
 
                     <!-- Chat Notification Area -->
-                    <DropdownMessage :messages="config.messages" />
+                    <DropdownMessage />
                     <!-- Chat Notification Area -->
                 </ul>
 
                 <!-- User Area -->
-                <DropdownUser :user="config.user" />
+
+                <DropdownUser />
                 <!-- User Area -->
             </div>
         </div>

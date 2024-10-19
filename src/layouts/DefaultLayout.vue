@@ -1,24 +1,14 @@
 <script setup lang="ts">
-import HeaderArea from '@/components/Header/HeaderArea.vue'
-import SidebarArea from '@/components/Sidebar/SidebarArea.vue'
-import { ref, onMounted } from 'vue'
-import API from '@/libs/API' // Assuming API is configured in libs/API
+import HeaderArea from '@/components/Header/HeaderArea.vue';
+import SidebarArea from '@/components/Sidebar/SidebarArea.vue';
+import { onMounted } from 'vue';
+import { useConfigStore } from '@/stores/useConfigStore'; // Import the store
 
-// State to store the configuration data
-const config = ref({
-    headerbar: {},
-    slidebar: {}
-});
+// Access the config store
+const configStore = useConfigStore();
 
-// Fetch config from API when component is mounted
 onMounted(async () => {
-    try {
-        const response = await API.get('/user/config'); // Assuming the endpoint for getting config
-        config.value = response.data; // Store the fetched config
-        console.log(config);
-    } catch (error) {
-        console.error('Failed to fetch config:', error);
-    }
+    await configStore.fetchConfig(); // Fetch the configuration when the component is mounted
 });
 </script>
 
@@ -26,13 +16,13 @@ onMounted(async () => {
     <!-- ===== Page Wrapper Start ===== -->
     <div class="flex h-screen overflow-hidden">
         <!-- ===== Sidebar Start ===== -->
-        <SidebarArea :config="config.slidebar" /> <!-- Pass slidebar config -->
+        <SidebarArea :config="configStore.slidebar" /> <!-- Access the config from store -->
         <!-- ===== Sidebar End ===== -->
 
         <!-- ===== Content Area Start ===== -->
         <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
             <!-- ===== Header Start ===== -->
-            <HeaderArea :config="config.headerbar" /> <!-- Pass headerbar config -->
+            <HeaderArea :config="configStore.headerbar" /> <!-- Access the config from store -->
             <!-- ===== Header End ===== -->
 
             <!-- ===== Main Content Start ===== -->
